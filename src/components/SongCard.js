@@ -11,6 +11,7 @@ export default class SongCard extends React.Component {
     }
     handleDragStart = (event) => {
         event.dataTransfer.setData("song", event.target.id);
+
         this.setState(prevState => ({
             isDragging: true,
             draggedTo: prevState.draggedTo
@@ -61,10 +62,10 @@ export default class SongCard extends React.Component {
     render() {
         const { song } = this.props;
         let num = this.getItemNum();
-        console.log("num: " + num);
-        let itemClass = "playlister-song";
+        // console.log("num: " + num);
+        let itemClass = "list-card unselected-list-card";
         if (this.state.draggedTo) {
-            itemClass = "playlister-song-dragged-to";
+            // itemClass = "playlister-song-dragged-to";
         }
         return (
             <div
@@ -77,7 +78,17 @@ export default class SongCard extends React.Component {
                 onDrop={this.handleDrop}
                 draggable="true"
             >
-                {song.title} by {song.artist}
+                {num + ". "}
+                <a 
+                    title={song.title + " by " + song.artist}
+                    href={"https://www.youtube.com/watch?v=" + song.youTubeId}>
+                    {song.title} by {song.artist}</a>
+                    <input
+                        id={"delete-song-" + num}
+                        class="list-card-button"
+                        type="button"
+                        value="🗑"
+                        style={{ marginLeft: "auto" }}></input>
             </div>
         )
     }

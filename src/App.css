@@ -19,7 +19,7 @@ body {
 
 #root {
   background-color: var(--swatch-primary);
-  font-family: serif;
+  font-family: 'Tangerine', serif;
   position: absolute;
   width: 80%;
   left: 10%;
@@ -109,16 +109,15 @@ body {
 }
 
 .list-card, .selected-list-card, .unselected-list-card {
-  font-size: 18pt;
+  font-size: 32pt;
   margin: 10px;
   padding: 20px;
   border-radius: 25px;
 }
 
 .unselected-list-card:hover {
-  cursor: pointer;
   background-color: var(--swatch-contrast);
-  color:white;
+  color: white;
 }
 
 .selected-list-card {
@@ -132,7 +131,7 @@ body {
 
 .list-card-button {
   float:right;
-  font-size:18pt;
+  font-size:24pt;
 }
 
 .playlister-button, .playlister-button-disabled {
@@ -164,6 +163,28 @@ input {
   font-size:20pt;
 }
 
+.is-dragging {
+  border: 2px black solid;
+  opacity: 0.5;
+}
+
+.toolbar-button {
+  font-size:36pt;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  box-shadow: 2px 4px #888888;
+  border-radius: 5px;
+}
+
+.disabled {
+  background-color: lightgray;
+}
+
+.disabled:hover {
+  color: var(--swatch-neutral);
+}
+
 
 /* THIS STYLE SHEET MANAGES STYLE FOR OUR MODAL, i.e. DIALOG BOX */
 
@@ -182,6 +203,7 @@ input {
   visibility: hidden;
   opacity: 0;
   transition: all 0.35s ease-in;
+  font-family: var(--font-primary);
 }
 
 .modal.is-visible {
