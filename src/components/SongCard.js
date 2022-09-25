@@ -59,6 +59,10 @@ export default class SongCard extends React.Component {
         return this.props.id.substring("playlist-song-".length);
     }
 
+    handleClick = (event) => {
+        
+    }
+
     render() {
         const { song } = this.props;
         let num = this.getItemNum();
@@ -76,6 +80,7 @@ export default class SongCard extends React.Component {
                 onDragEnter={this.handleDragEnter}
                 onDragLeave={this.handleDragLeave}
                 onDrop={this.handleDrop}
+                onClick={this.handleClick}
                 draggable="true"
             >
                 {num + ". "}
