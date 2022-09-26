@@ -72,8 +72,9 @@ export default class SongCard extends React.Component {
         }
     }
 
-    handleRemoveSong() {
-        
+    handleRemoveSong = () => {
+        // this.stopPropagation();
+        this.props.removeCallback(this.getItemNum() - 1);
     }
 
     render() {
