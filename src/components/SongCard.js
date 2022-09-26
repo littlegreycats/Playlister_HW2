@@ -60,7 +60,16 @@ export default class SongCard extends React.Component {
     }
 
     handleClick = (event) => {
-        
+        if (event.detail === 2) { // if song card double clicked
+            // initiate edit song
+            event.stopPropagation();
+            const { song } = this.props;
+            let songKeyPair = {
+                key: this.getItemNum()-1,
+                song: song
+            }
+            this.props.editCallback(songKeyPair);
+        }
     }
 
     render() {

@@ -163,6 +163,8 @@ input {
   font-size:20pt;
 }
 
+
+
 .is-dragging {
   border: 2px black solid;
   opacity: 0.5;
@@ -248,6 +250,10 @@ input {
 span {
   font-weight: bold;
   font-style: italic;
+}
+
+label {
+  display: inline-block;
 }
 
 .modal-south {
