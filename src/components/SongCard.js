@@ -72,6 +72,10 @@ export default class SongCard extends React.Component {
         }
     }
 
+    handleRemoveSong() {
+        
+    }
+
     render() {
         const { song } = this.props;
         let num = this.getItemNum();
@@ -99,6 +103,7 @@ export default class SongCard extends React.Component {
                     {song.title} by {song.artist}</a>
                     <input
                         id={"delete-song-" + num}
+                        onClick={this.handleRemoveSong}
                         class="list-card-button"
                         type="button"
                         value="🗑"

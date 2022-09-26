@@ -20,6 +20,7 @@ import PlaylistCards from './components/PlaylistCards.js';
 import SidebarHeading from './components/SidebarHeading.js';
 import SidebarList from './components/SidebarList.js';
 import Statusbar from './components/Statusbar.js';
+import AddSong_Transaction from './transactions/AddSong_Transaction';
 
 class App extends React.Component {
     constructor(props) {
@@ -335,6 +336,28 @@ class App extends React.Component {
         this.hideEditSongModal();
     }
 
+    addAddSongTransaction = () => {
+        let transaction = new AddSong_Transaction(this);
+        this.tps.addTransaction(transaction);
+        // console.log("transaction added");
+    }
+
+    addSong() {
+        let song = {
+            title: "Untitled",
+            artist: "Untitled",
+            youTubeId: "dQw4w9WgXcQ"
+        }
+        this.state.currentList.songs.push(song);
+        console.log(this.state.currentList.songs);
+        this.setStateWithUpdatedList(this.state.currentList);
+    }
+
+    removeSong(index) {
+        this.state.currentList.songs.splice(index, 1);
+        this.setStateWithUpdatedList(this.state.currentList);
+    }
+
     render() {
         let canAddSong = this.state.currentList !== null;
         let canUndo = this.tps.hasTransactionToUndo();
@@ -360,6 +383,7 @@ class App extends React.Component {
                     canUndo={canUndo}
                     canRedo={canRedo}
                     canClose={canClose} 
+                    addCallback={this.addAddSongTransaction}
                     undoCallback={this.undo}
                     redoCallback={this.redo}
                     closeCallback={this.closeCurrentList}
