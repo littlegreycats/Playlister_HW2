@@ -16,14 +16,11 @@ export default class RemoveSong_Transaction extends jsTPS_Transaction {
     }
 
     undoTransaction() {
-        // console.log(this.songKeyPair.key);
-        // this.app.addSong();
         console.log(this.title);
         console.log(this.artist);
         console.log(this.id);
-        // console.log(this.app.state.currentList.songs.length-1);
-        // this.app.switchSongs(this.app.state.currentList.songs.length-1, this.songKeyPair.key);
-        // console.log(this.oldSongKeyPair);
-        // this.app.editSong(this.oldSongKeyPair, this.title, this.artist, this.id);
+        this.app.addSong();
+        this.app.moveSong(this.songKeyPair.key+1, this.app.state.currentList.songs.length);
+        this.app.editSong(this.songKeyPair, this.title, this.artist, this.id);
     }
 }

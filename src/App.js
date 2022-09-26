@@ -360,12 +360,14 @@ class App extends React.Component {
             artist: "Untitled",
             youTubeId: "dQw4w9WgXcQ"
         }
-        this.state.currentList.songs.push(song);
-        console.log(this.state.currentList.songs);
-        this.setStateWithUpdatedList(this.state.currentList);
+        let list = this.state.currentList;
+        list.songs.push(song);
+        // console.log(this.state.currentList.songs);
+        this.setStateWithUpdatedList(list);
     }
 
-    removeSong(index) {
+    removeSong = (index) => {
+        console.log("removing song at index " + index);
         this.state.currentList.songs.splice(index, 1);
         this.setStateWithUpdatedList(this.state.currentList);
     }
@@ -390,7 +392,7 @@ class App extends React.Component {
             listKeyPairMarkedForDeletion: prevState.listKeyPairMarkedForDeletion,
             sessionData: prevState.sessionData,
             songKeyPairMarkedForEditing: prevState.songKeyPairMarkedForEditing,
-            songKeyPairMarkedForDeletion: prevState.songKeyPairMarkedForDeletion
+            songKeyPairMarkedForDeletion: songKeyPair
         }), () => {
             this.showRemoveSongModal();
         });
@@ -406,6 +408,13 @@ class App extends React.Component {
         console.log("closing remove song modal");
         let modal = document.getElementById("remove-song-modal");
         modal.classList.remove("is-visible");
+    }
+
+    addRemoveSongTransaction = (index) => {
+        console.log("adding remove song transaction");
+        let transaction = new RemoveSong_Transaction(this, this.state.songKeyPairMarkedForDeletion);
+        this.tps.addTransaction(transaction);
+        this.hideRemoveSongModal();
     }
 
     render() {
