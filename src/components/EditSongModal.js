@@ -33,6 +33,7 @@ export default class EditSongModal extends Component {
                                         type="text"
                                         id="edit-song-title"
                                         defaultValue={song.title}
+                                        key={song.title}
                                     />
                                 <br></br>
                                 <div/>
@@ -42,6 +43,7 @@ export default class EditSongModal extends Component {
                                     type="text"
                                     id="edit-song-artist"
                                     defaultValue={song.artist}
+                                    key={song.artist}
                                     style={{width: "60%"}}
                                 />
                                 <br></br>
@@ -52,6 +54,7 @@ export default class EditSongModal extends Component {
                                     type="text"
                                     id="edit-song-id"
                                     defaultValue={song.youTubeId}
+                                    key={song.youTubeId}
                                 />
                             </div>
                         </div>
