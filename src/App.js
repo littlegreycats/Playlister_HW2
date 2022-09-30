@@ -417,6 +417,16 @@ class App extends React.Component {
         this.hideRemoveSongModal();
     }
 
+    onKeyDown = (event) => {
+        if (event.ctrlKey && event.code === 'KeyZ') {
+            // console.log("CONTROL Z");
+            this.undo();
+        } else if (event.ctrlKey && event.code === 'KeyY') {
+            // console.log("CONTROL Y");
+            this.redo();
+        }
+    }
+
     render() {
         let canAddSong = this.state.currentList !== null;
         let canUndo = this.tps.hasTransactionToUndo();
@@ -424,7 +434,7 @@ class App extends React.Component {
         let canClose = this.state.currentList !== null;
         let canAddList = this.state.currentList == null;
         return (
-            <div id="root">
+            <div id="root" onKeyDown={this.onKeyDown} tabIndex="0">
                 <Banner />
                 <SidebarHeading
                     createNewListCallback={this.createNewList}
